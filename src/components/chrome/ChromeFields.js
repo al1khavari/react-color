@@ -12,13 +12,15 @@ export class ChromeFields extends React.Component {
   constructor(props) {
     super()
 
-    if (props.hsl.a !== 1 && props.view === "hex") {
+    const { hsl, view = "hex" } = props;
+
+    if (hsl.a !== 1 && view === "hex") {
       this.state = {
         view: "rgb"
       };
     } else {
       this.state = {
-        view: props.view,
+        view: view,
       }
     }
   }
@@ -276,10 +278,6 @@ export class ChromeFields extends React.Component {
       </div>
     )
   }
-}
-
-ChromeFields.defaultProps = {
-  view: "hex",
 }
 
 export default ChromeFields

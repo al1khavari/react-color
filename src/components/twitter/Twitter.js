@@ -7,8 +7,16 @@ import * as color from '../../helpers/color'
 
 import { ColorWrap, EditableInput, Swatch } from '../common'
 
-export const Twitter = ({ onChange, onSwatchHover, hex, colors, width, triangle,
-  styles: passedStyles = {}, className = '' }) => {
+export const Twitter = ({ 
+  onChange, 
+  onSwatchHover, 
+  hex, 
+  colors = ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'], 
+  width = 276, 
+  triangle = 'top-left', 
+  styles: passedStyles = {}, 
+  className = '' 
+}) => {
   const styles = reactCSS(merge({
     'default': {
       card: {
@@ -157,14 +165,6 @@ Twitter.propTypes = {
   triangle: PropTypes.oneOf(['hide', 'top-left', 'top-right']),
   colors: PropTypes.arrayOf(PropTypes.string),
   styles: PropTypes.object,
-}
-
-Twitter.defaultProps = {
-  width: 276,
-  colors: ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3',
-    '#ABB8C3', '#EB144C', '#F78DA7', '#9900EF'],
-  triangle: 'top-left',
-  styles: {},
 }
 
 export default ColorWrap(Twitter)

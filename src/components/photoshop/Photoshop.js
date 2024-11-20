@@ -23,6 +23,7 @@ export class Photoshop extends React.Component {
     const { 
       styles: passedStyles = {},
       className = '',
+      header = 'Color Picker',
     } = this.props
     const styles = reactCSS(merge({
       'default': {
@@ -83,7 +84,7 @@ export class Photoshop extends React.Component {
 
     return (
       <div style={ styles.picker } className={ `photoshop-picker ${ className }` }>
-        <div style={ styles.head }>{ this.props.header }</div>
+        <div style={ styles.head }>{ header }</div>
 
         <div style={ styles.body } className="flexbox-fix">
           <div style={ styles.saturation }>
@@ -131,11 +132,6 @@ export class Photoshop extends React.Component {
 Photoshop.propTypes = {
   header: PropTypes.string,
   styles: PropTypes.object,
-}
-
-Photoshop.defaultProps = {
-  header: 'Color Picker',
-  styles: {},
 }
 
 export default ColorWrap(Photoshop)

@@ -2,13 +2,13 @@ import React, { Component, PureComponent } from 'react'
 import debounce from 'lodash/debounce'
 import * as color from '../../helpers/color'
 
-export const ColorWrap = (Picker) => {
+export const ColorWrap = (Picker, defaultColor = { h: 250, s: 0.50, l: 0.20, a: 1 }) => {
   class ColorPicker extends (PureComponent || Component) {
     constructor(props) {
       super()
 
       this.state = {
-        ...color.toState(props.color, 0),
+        ...color.toState(props.color || defaultColor, 0),
       }
 
       this.debounce = debounce((fn, data, event) => {
@@ -18,7 +18,7 @@ export const ColorWrap = (Picker) => {
 
     static getDerivedStateFromProps(nextProps, state) {
       return {
-        ...color.toState(nextProps.color, state.oldHue),
+        ...color.toState(nextProps.color || defaultColor, state.oldHue),
       }
     }
 
@@ -59,16 +59,6 @@ export const ColorWrap = (Picker) => {
 
   ColorPicker.propTypes = {
     ...Picker.propTypes,
-  }
-
-  ColorPicker.defaultProps = {
-    ...Picker.defaultProps,
-    color: {
-      h: 250,
-      s: 0.50,
-      l: 0.20,
-      a: 1,
-    },
   }
 
   return ColorPicker
